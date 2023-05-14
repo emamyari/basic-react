@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    state = {count:10}
+    state = {count:'0'}
     render() {
-        console.log(this.state.count)
+         let a=''
+         this.state.count==0?a='zero':a=this.state.count
          return (
 
             <div>
                 <button className='btn btn-success m-1'>+</button>
-                <span className='bg-primary m-1 btn text-light'>{this.state.count} </span>
+                <span className='bg-primary m-1 btn text-light'>{a} </span>
                 <button className='btn btn-warning m-1'>-</button>
                 <button className='btn btn-danger m-1'>delete</button>
             </div>
