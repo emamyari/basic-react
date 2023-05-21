@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Counter from './components/counter';
+import Counters from './components/counters';
 
 class App extends Component {
-  state = {  } 
-  render() { 
-    return (<Counter></Counter>);
+  state = {}
+  render() {
+    return (
+      <div>
+       <Counters></Counters>
+      </div>
+    );
   }
 }
- 
+
 export default App;

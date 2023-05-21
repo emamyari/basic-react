@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    state = {count:'0'}
+    state = {count:this.props.tedad}
     render() {
          let a=''
          this.state.count==0?a='zero':a=this.state.count
          return (
-
             <div>
                 <button className='btn btn-success m-1'>+</button>
                 <span className='bg-primary m-1 btn text-light'>{a} </span>
