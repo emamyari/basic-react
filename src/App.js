@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Counter from './components/counter';
 import Counters from './components/counters';
 import Nav from './components/nav';
+import { act } from '@testing-library/react';
 
 
 class App extends Component {
-  state = {
+  state = { 
     pro: [
       { id: 1, title: 'iphone', qyt: 5, color: 'white' },
       { id: 2, title: 'mac book', qyt: 2, color: 'gray' },
@@ -30,8 +31,10 @@ class App extends Component {
   }
 
   render() {
+    let a=this.state.jp
     return (
       <div>
+          
         <Nav list={this.state.pro} ></Nav>
         <Counters list={this.state.pro} dl={this.handleDel} hi={this.handleInc} ></Counters>
       </div>
