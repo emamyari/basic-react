@@ -22,7 +22,10 @@ class App extends Component {
   options = {
     chart:{type:'pie'},
     series: [{
-      data: [1, 2, 3,1, 2, 3,1, 2, 3,1, 2, 3,1, 2, 3,1, 2, 3,]
+      data: [{name:'iphone',y:200}
+            ,{name:'macBook',y:10}
+            ,{name:'pen',y:1000}
+            ,{name:'mouse',y:1000} ]
     }]
   }
 
@@ -46,8 +49,7 @@ class App extends Component {
     let a = this.state.jp
     return (
       <div>
-        <Button variant='outlined'>ewfefwefwewef</Button>
-        <Nav list={this.state.pro} ></Nav>
+         <Nav list={this.state.pro} ></Nav>
         <Counters list={this.state.pro} dl={this.handleDel} hi={this.handleInc} ></Counters>
 
         <HighchartsReact highcharts={Highcharts}  options={this.options}></HighchartsReact>
