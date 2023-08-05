@@ -11,23 +11,11 @@ import Button from '@mui/material/Button';
 class App extends Component {
   state = {
     pro: [
-      { id: 1, title: 'iphone', qyt: 5, color: 'white', unitPrice: 100 },
-      { id: 2, title: 'mac book', qyt: 2, color: 'gray', unitPrice: 90 },
-      { id: 3, title: 'desk', qyt: 1, color: 'black', unitPrice: 70 },
-      { id: 4, title: 'ghahve saz', qyt: 10, color: 'brown', unitPrice: 130 },
-      { id: 5, title: 'projector', qyt: 4, color: '--', unitPrice: 200 },
-    ]
+
+    ],
+    options: {}
   }
 
-  options = {
-    chart:{type:'pie'},
-    series: [{
-      data: [{name:'iphone',y:200}
-            ,{name:'macBook',y:10}
-            ,{name:'pen',y:1000}
-            ,{name:'mouse',y:1000} ]
-    }]
-  }
 
 
   handleDel = (id) => {
@@ -43,17 +31,54 @@ class App extends Component {
     let finalList = [...newList.slice(0, ja), element, ...newList.slice(ja)]
     this.setState({ pro: finalList })
 
+
+    let li = []
+    this.state.pro.forEach(element => {
+      let myObj = { name: element.title, y: element.qyt * element.unitPrice }
+      li.push(myObj)
+    });
+    let options = {
+      chart: { type: 'pie' },
+      series: { data: li }
+    }
+
+    this.setState({ options: options })
+
+
+
+
+
+  }
+
+  componentDidMount() {
+    fetch('http://192.168.1.36:7000/serverData')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ pro: data })
+        //--------------------------------------------   
+        let li = []
+        data.forEach(element => {
+          let myObj = { name: element.title, y: element.qyt * element.unitPrice }
+          li.push(myObj)
+        });
+        let options = {
+          chart: { type: 'pie' },
+          series: { data: li }
+        }
+        this.setState({ options: options })
+      });
   }
 
   render() {
+    console.log('render')
     let a = this.state.jp
     return (
       <div>
-         <Nav list={this.state.pro} ></Nav>
+        <Nav list={this.state.pro} ></Nav>
         <Counters list={this.state.pro} dl={this.handleDel} hi={this.handleInc} ></Counters>
 
-        <HighchartsReact highcharts={Highcharts}  options={this.options}></HighchartsReact>
- 
+        <HighchartsReact highcharts={Highcharts} options={this.state.options}></HighchartsReact>
+
       </div>
     );
   }
