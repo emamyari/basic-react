@@ -5,7 +5,7 @@ import Nav from './components/nav';
 
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import Navbar from './components/NewNav';
+import Navbar from './components/nav';
 import Button from '@mui/material/Button';
 
 class App extends Component {
