@@ -7,12 +7,11 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import Navbar from './components/nav';
 import Button from '@mui/material/Button';
+import Register from './components/register';
 
 class App extends Component {
   state = {
-    pro: [
-
-    ],
+    pro: [],
     options: {}
   }
 
@@ -78,6 +77,8 @@ class App extends Component {
         <Counters list={this.state.pro} dl={this.handleDel} hi={this.handleInc} ></Counters>
 
         <HighchartsReact highcharts={Highcharts} options={this.state.options}></HighchartsReact>
+
+        <Register></Register>
 
       </div>
     );
