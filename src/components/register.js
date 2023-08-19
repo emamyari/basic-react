@@ -1,12 +1,28 @@
 import React, {useState} from "react";
 
 function Register() {
-    const [state1,setState1]=useState("1")
-    const [state2,setState2]=useState("2")
+    const [state1,setState1]=useState("")
+    const [state2,setState2]=useState("")
 
     const logState = () => {
-        console.log(state1)
-        console.log(state2)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+        "email": state1,
+        "family": state2
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        };
+
+        fetch("http://192.168.1.36:7000/inData", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
       }
 
 
